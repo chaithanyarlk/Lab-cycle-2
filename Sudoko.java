@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.lang.*;
 
 
-
 public class Sudoko{
 
      public static int checkRow(int arr[][],int n,int i,int j,int val){
@@ -47,48 +46,74 @@ public class Sudoko{
 
      }
 
+     public static int slotFinderx(int arr[][],int n){
+          for(int i=0;i<n;i++){
+               for(int j=0;j<n;j++){
+                    if(arr[i][j]==0)
+                    return((i*10)+j);
+               }
+          }
+          return -1;
+
+     }
+
      public static int solverCode(int arr[][],int n,int i,int j){
-          int t1=0,t2=0;
+          int check=0;
+          int temp,x,y;
           if(arr[i][j]==0){
                System.out.println(i+" val of i "+j+" val of j");
                int k=1;
                int test=0;
-               
+
                for(;k<10;k++){
                     if(test!=k){
                     if(isSafe(arr,n,i,j,k)==1){
                          displayMatx(arr, n);
                          System.out.println("this iterated");
                          arr[i][j]=k;
-                         if(i<n-1){
-                              t1=solverCode(arr, n, , );
-                         }
-                         if(j<n-1){
-                              t2=solverCode(arr, n, i, j+1);
-                         }
-                         if(t1==0||t2==0){
+                         temp=slotFinderx(arr, n);
+                         x=(int)temp/10;
+                         y=(int)temp%10;
+                         check=solverCode(arr, n, x, y);
+                         if(check==0)
+                         {
                          arr[i][j]=0;
                          k=1;
-                         test=k;}
+                         test=k;
+                         }
 
-                         
+
+
+
 
                     }}
 
                }
                if(k==10)
                return 0;
-               
-               
+
+
 
           }
-          
-          return 1;
 
-          
+          {
+               temp=slotFinderx(arr, n);
+               if(temp!=-1)
+
+               {
+                    x=(int)temp/10;
+                    y=(int)temp%10;
+
+                    check=solverCode(arr, n,x,y);
+                    return (check);
+               }
+               return 1;
+          }
+
+
      }
      static public void displayMatx(int arr[][],int n){
-          //displays the arr 
+          //displays the arr
 
           for(int i=0;i<n;i++){
                for(int j=0;j<n;j++){
