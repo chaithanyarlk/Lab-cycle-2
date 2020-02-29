@@ -101,7 +101,7 @@ public class Sudokorev{
                     System.out.println("bro if you want to leave empty space press 0");
                     arr[i][j]=s.nextInt();
                     if(arr[i][j]!=0){
-                         vec.addElement(i*10+y);
+                         vec.addElement(i*10+j);
                     }
                }
 
